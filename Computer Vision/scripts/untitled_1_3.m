@@ -1,7 +1,7 @@
 %% Task 1 Q3 %%
 
 % Specify the file path
-filePath = 'C:\Users\3ahme\Documents\Computer Vision\F0_PVT.mat'; % Update with your actual file path
+filePath = '..\..\Computer Vision\output_files\F0_PVT.mat'; % Update with your actual file path
 
 % Load the PVT data
 load(filePath); % This will load the data from the specified file
