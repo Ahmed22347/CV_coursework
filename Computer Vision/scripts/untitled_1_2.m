@@ -1,7 +1,7 @@
 %%Task 1 Q1 %%
 
 % Specify the folder containing the MAT files
-folderPath = 'C:\Users\3ahme\Documents\Computer Vision\PR_CW_DATA\PR_CW_DATA_2021';
+folderPath = '..\..\Computer Vision\PR_CW_DATA\PR_CW_DATA_2021';
 
 % Get a list of all MAT files in the folder
 matFiles = dir(fullfile(folderPath, '*.mat'));

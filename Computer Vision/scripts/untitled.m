@@ -1,7 +1,7 @@
 %%Task 1 Q2 %%
 
 % Specify the folder containing the MAT files
-folderPath = 'C:\Users\3ahme\Documents\Computer Vision\PR_CW_DATA\PR_CW_DATA_2021';
+folderPath = '..\..\Computer Vision\PR_CW_DATA\PR_CW_DATA_2021';
 
 % Get a list of all MAT files in the folder
 matFiles = dir(fullfile(folderPath, '*.mat'));
@@ -38,7 +38,7 @@ end
 outputFileName = 'F0_PVT.mat';
 
 %change filepath
-outputFilePath = fullfile('C:\Users\3ahme\Documents\Computer Vision', outputFileName);
+outputFilePath = fullfile('..\..\Computer Vision\output_files', outputFileName);
 
 % Save the dataVectors variable to a MAT-file
 save(outputFilePath, 'dataVectors');
@@ -47,7 +47,7 @@ save(outputFilePath, 'dataVectors');
 outputFileName = 'F0_Electrodes.mat';
 
 %change filepath
-outputFilePath = fullfile('C:\Users\3ahme\Documents\Computer Vision', outputFileName);
+outputFilePath = fullfile('..\..\Computer Vision\output_files', outputFileName);
 
 % Save the dataVectors variable to a MAT-file
 save(outputFilePath, 'dataVectors_electrodes');
