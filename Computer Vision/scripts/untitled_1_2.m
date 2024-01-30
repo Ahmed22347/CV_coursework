@@ -1,4 +1,4 @@
-%%Task 1 Q1 %%
+%%Task 1 Q2 %%
 
 % Specify the folder containing the MAT files
 folderPath = '..\..\Computer Vision\PR_CW_DATA\PR_CW_DATA_2021';
@@ -7,62 +7,47 @@ folderPath = '..\..\Computer Vision\PR_CW_DATA\PR_CW_DATA_2021';
 matFiles = dir(fullfile(folderPath, '*.mat'));
 
 % Initialize an empty cell array to store data vectors
-dataVectors = cell(1, 8);
-k=cell(1,2);
-j=0;
-h=1;
-% Loop through each MAT file and import the 1D array
-for i = 8:45:55
-    % Construct the full file path
+dataVectors = cell(60, 3);
+dataVectors_electrodes = cell(60,19);   
+timeinstance = 10
+
+for i = 1:numel(matFiles)
     filePath = fullfile(folderPath, matFiles(i).name);
-    k{h}=i
-    h=h+1
+    
     try
-        % Load the MAT file
         data = load(filePath);
-        j=j+1;
         
-        % Modify the variable name accordingly based on your actual data structure
-        dataVectors{j} = data.F0pdc(:); % Ensure it is a column vector
-        dataVectors{j+1} = data.F0tdc(:);
-        dataVectors{j+2} = data.F0Electrodes(5,:);
-        dataVectors{j+3} = data.F0pac(10,:);
-        j=j+3;
-    catch
-        fprintf('Error loading data from file: %s\n', filePath);
-        continue;
-    end
-end
+        if isfield(data, 'F0pdc') && isfield(data, 'F0pac') && isfield(data, 'F0tdc')
+            dataVectors{i,1} = data.F0pdc(timeinstance); % Ensure it is a column vector
+            
+            % Use comma-separated list assignment for elements 2 to 23
+            dataVectors{i,2} = data.F0pac(2, timeinstance);
+          
+            dataVectors{i,3} = data.F0tdc(timeinstance);
 
-% Plotting the data from each 1D array on the same graph
-figure;
-hold on;
-
-for i = 1:8
-    colors = {'r', 'b', 'g', 'k'};  % Define an array of colors
-
-    if i < 5
-        if i == 1
-            plot(dataVectors{i}, 'DisplayName', sprintf('%s Pressure', matFiles(k{1}).name), 'Color', colors{i});
-        elseif i == 2
-            plot(dataVectors{i}, 'DisplayName', sprintf('%s Temperature', matFiles(k{1}).name), 'Color', colors{i});
-        elseif i == 3
-            plot(dataVectors{i}, 'DisplayName', sprintf('%s Temperature', matFiles(k{1}).name), 'Color', colors{i});
+            dataVectors_electrodes(i,1:19) = num2cell(data.F0Electrodes(:, timeinstance));
         else
-            plot(dataVectors{i}, 'DisplayName', sprintf('%s Temperature', matFiles(k{1}).name), 'Color', colors{i});
+            fprintf('Error: Missing required fields in file: %s\n', filePath);
         end
-    else
-        % Calculate the color index for i values from 5 to 8
-        colorIndex = mod(i - 5, numel(colors)) + 1;
-        plot(dataVectors{i}, 'DisplayName', sprintf('%s', matFiles(k{2}).name), 'LineStyle', '--', 'Color', colors{colorIndex});
+    catch exception
+        fprintf('Error loading data from file: %s\n', filePath);
+        fprintf('Error message: %s\n', exception.message);
     end
 end
+% Specify the file name for the MAT-file
+outputFileName = 'F0_PVT.mat';
 
+%change filepath
+outputFilePath = fullfile('..\..\Computer Vision\output_files', outputFileName);
 
-hold off;
+% Save the dataVectors variable to a MAT-file
+save(outputFilePath, 'dataVectors');
 
-% Adding labels and legend
-xlabel('Index');
-ylabel('Data Value');
-title('Combined Plot of 1D Arrays from Multiple Files');
-legend('Location', 'best');
+% Specify the file name for the MAT-file
+outputFileName = 'F0_Electrodes.mat';
+
+%change filepath
+outputFilePath = fullfile('..\..\Computer Vision\output_files', outputFileName);
+
+% Save the dataVectors variable to a MAT-file
+save(outputFilePath, 'dataVectors_electrodes');
