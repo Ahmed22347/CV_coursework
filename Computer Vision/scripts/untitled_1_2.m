@@ -19,11 +19,11 @@ for i = 1:numel(matFiles)
         
         if isfield(data, 'F0pdc') && isfield(data, 'F0pac') && isfield(data, 'F0tdc')
             dataVectors{i,1} = data.F0pdc(timeinstance); % Ensure it is a column vector
+            %First column Pressure
             
-            % Use comma-separated list assignment for elements 2 to 23
-            dataVectors{i,2} = data.F0pac(2, timeinstance);
+            dataVectors{i,2} = data.F0pac(2, timeinstance); %Vibrations
           
-            dataVectors{i,3} = data.F0tdc(timeinstance);
+            dataVectors{i,3} = data.F0tdc(timeinstance); %temperature third column
 
             dataVectors_electrodes(i,1:19) = num2cell(data.F0Electrodes(:, timeinstance));
         else
