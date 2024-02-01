@@ -9,7 +9,7 @@ matFiles = dir(fullfile(folderPath, '*.mat'));
 % Initialize an empty cell array to store data vectors
 dataVectors = cell(60, 3);
 dataVectors_electrodes = cell(60,19);   
-timeinstance = 10
+timeinstance = 5
 
 for i = 1:numel(matFiles)
     filePath = fullfile(folderPath, matFiles(i).name);
