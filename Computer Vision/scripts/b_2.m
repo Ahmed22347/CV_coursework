@@ -7,7 +7,7 @@ xticks(1:2:19)
 xlabel("Principal Components")
 ylabel("Variance")
 figure
-scatter3(score(:,1), score(:,2), score(:,3))
+scatter3(score(:,1), score(:,2), score(:,3), 'filled')
 xlabel("PC1")
 ylabel("PC2")
 zlabel("PC3")
