@@ -1,3 +1,4 @@
+load("/MATLAB Drive/F0_Electrodes.mat");
 ElectrodeData = cell2mat(dataVectors_electrodes);
 [coeff, score, latent] = pca(ElectrodeData);
 plot(latent, '-o')
