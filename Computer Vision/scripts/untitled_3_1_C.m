@@ -1,7 +1,4 @@
-%% Task 3 Q1 %%%% 
-
-
-%%%%%%% A %%%%%%%%%%
+%% %%%%% C %%%%%%%%%%
 
 %%% PressureVibration
 
@@ -13,7 +10,8 @@ load(filePath); % This will load the data from the specified file
 data_ = cell2mat(dataVectors);
 
 
-data=data_(11:30,:);
+data = [data_(1:10, :); data_(51:60, :)];
+
 
 % Feature pairs
 pressureVibration = data(:, [1, 2]);
@@ -25,8 +23,8 @@ standardizedData = zscore(pressureVibration);
 
 % Labels
 labels = zeros([20,1]);
-labels(1:10) = 1; % black foam
-labels(11:20) = 2; % car sponge
+labels(1:10) = 1; % acrylic
+labels(11:20) = 2; % steal vase
 
 
 % Standardized Pressure vs. Vibration
@@ -77,7 +75,7 @@ set(h(1),'LineStyle','--');
 xlabel('Standardized Pressure');
 ylabel('Standardized Vibration');
 title('Standardized Data with LDA');
-legend('Black Foam', 'Car Sponge', 'Black Foam Mean','Car Sponge Mean', 'LDA Line', 'Separation line');
+legend('acrylic', 'steal vase', 'acrylic Mean','steal vase Mean', 'LDA Line', 'Separation line');
 hold off;
 
 
@@ -89,8 +87,8 @@ standardizedData = zscore(pressureTemperature);
 
 % Labels
 labels = zeros([20,1]);
-labels(1:10) = 1; % black foam
-labels(11:20) = 2; % car sponge
+labels(1:10) = 1; % acrylic
+labels(11:20) = 2; % steal vase
 
 
 % Standardized Pressure vs. Vibration
@@ -142,7 +140,7 @@ set(h(1),'LineStyle','--');
 xlabel('Standardized Pressure');
 ylabel('Standardized Temperature');
 title('Standardized Data with LDA');
-legend('Black Foam', 'Car Sponge', 'Black Foam Mean','Car Sponge Mean', 'LDA Line', 'Separation line');
+legend('acrylic', 'steal vase', 'acrylic Mean','steal vase Mean', 'LDA Line', 'Separation line');
 hold off;
 
 
@@ -155,8 +153,8 @@ standardizedData = zscore(Vibrationtemperature);
 
 % Labels
 labels = zeros([20,1]);
-labels(1:10) = 1; % black foam
-labels(11:20) = 2; % car sponge
+labels(1:10) = 1; % acrylic
+labels(11:20) = 2; % steal vase
 
 
 % Standardized Pressure vs. Vibration
@@ -207,7 +205,7 @@ set(h(1),'LineStyle','--');
 xlabel('Standardized Vibration');
 ylabel('Standardized Temperature');
 title('Standardized Data with LDA');
-legend('Black Foam', 'Car Sponge', 'Black Foam Mean','Car Sponge Mean', 'LDA Line', 'Separation line');
+legend('acrylic', 'steal vase', 'acrylic Mean','steal vase Mean', 'LDA Line', 'Separation line');
 hold off;
 
 
@@ -220,8 +218,8 @@ standardizedData = zscore(data);
 
 % Labels
 labels = zeros([20,1]);
-labels(1:10) = 1; % black foam
-labels(11:20) = 2; % car sponge
+labels(1:10) = 1; % acrylic
+labels(11:20) = 2; % steal vase
 
 
 % Standardized Pressure vs. Vibration
@@ -263,14 +261,14 @@ X = standardizedData(:, [1, 2, 3]); % Selecting Pressure, Vibration, and Tempera
 % 3D Scatter Plot
 % Define RGB colors for each category
 colors = zeros(size(X,1), 3); % Initialize a colors matrix
-colors(labels == 1, :) = repmat([0 0 0], sum(labels == 1), 1); % Black for Black Foam
-colors(labels == 2, :) = repmat([1 1 0], sum(labels == 2), 1); % Yellow for Car Sponge
+colors(labels == 1, :) = repmat([0 0 0], sum(labels == 1), 1); % Black for acrylic
+colors(labels == 2, :) = repmat([1 1 0], sum(labels == 2), 1); % Yellow for steal vase
 
 % 3D Scatter Plot using RGB colors
 figure;
 hold on;
-h1 = scatter3(X(labels == 1,1), X(labels == 1,2), X(labels == 1,3), 36, [0 0 0], 'filled'); % Black for Black Foam
-h2 = scatter3(X(labels == 2,1), X(labels == 2,2), X(labels == 2,3), 36, [1 1 0], 'filled'); % Yellow for Car Sponge
+h1 = scatter3(X(labels == 1,1), X(labels == 1,2), X(labels == 1,3), 36, [0 0 0], 'filled'); % Black for acrylic
+h2 = scatter3(X(labels == 2,1), X(labels == 2,2), X(labels == 2,3), 36, [1 1 0], 'filled'); % Yellow for steal vase
 
 % xlabel('Pressure');
 % ylabel('Vibration');
@@ -308,9 +306,6 @@ xlabel('Standardized Pressure');
 ylabel('Standardized Vibration');
 zlabel('Standardized Temperature');
 title('Standardized Data with LDA');
-legend('Black Foam', 'Car Sponge', 'Black Foam Mean', 'Car Sponge Mean', 'LDA Direction', 'Separation Line');
+legend('acrylic', 'steal vase', 'acrylic Mean', 'steal vase Mean', 'LDA Direction', 'Separation Line');
 hold off;
-
- 
-
 
