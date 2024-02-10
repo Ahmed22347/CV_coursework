@@ -2,7 +2,7 @@
 
 %%% PressureVibration
 
-filePath = '..\..\Computer Vision\output_files\F0_PVT.mat'; % Update with your actual file path
+filePath = '..\..\Computer Vision\output_files\F0_PVT.mat'; % Load file
 
 % Load the PVT data
 load(filePath); % This will load the data from the specified file

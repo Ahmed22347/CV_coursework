@@ -12,7 +12,7 @@ k=cell(1,2);
 j=0;
 h=1;
 % Loop through each MAT file and import the 1D array
-for i = 8:40:55
+for i = 9:50:60
     % Construct the full file path
     filePath = fullfile(folderPath, matFiles(i).name);
     k{h}=i
